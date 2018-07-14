@@ -30,7 +30,7 @@ html {
     border-radius: 5px;
 }
 
-#question {
+#fruitsContainer {
     width: 650px;
     height: 400px;
     margin: 70px auto 10px auto;
@@ -91,7 +91,7 @@ html {
 }
 
 #hearts {
-    width: 155px;
+    width: 78px;
     height: 20px;
     padding: 11px;
     background-color: chocolate;
@@ -119,4 +119,10 @@ html {
     left: 70px;
     z-index: 2;
     display: none;
+}
+
+.life {
+    width: 16px;
+    height: 16px;
+    margin: 0 5px;
 }
