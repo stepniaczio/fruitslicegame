@@ -40,6 +40,10 @@ html {
     text-align: center;
     font-family: cursive, sans-serif;
     border-radius: 5px;
+    position: relative;
+    overflow: hidden;
+    /* ↑ any elemnt inside fruitContainer that
+    is overflown is not goint to appear*/
 }
 
 #instruction {
@@ -125,4 +129,11 @@ html {
     width: 16px;
     height: 16px;
     margin: 0 5px;
+}
+
+.fruit {
+    width: 80px;
+    height: 80px;
+    position: absolute;
+    top: -70px;
 }
