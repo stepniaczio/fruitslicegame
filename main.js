@@ -5,6 +5,7 @@ let fruits = ['apple', 'cherries', 'mango', 'orange', 'peach', 'pineapple', 'ras
 let step;
 let action;
 
+
 $(function() {
     $('#startreset').click(function() {
         if (playing) {
@@ -12,12 +13,12 @@ $(function() {
         } else {
             playing = true;
             score = 0;
-            $('#scorevalue').html(score);
+            $('#scorevalue').html(score.toString());
 
             $('#hearts').show();
             heartsLeft = 3;
             addHearts();
-
+            $("#gameOver").hide();
             $('#startreset').html('Reset game');
             startAction();
 
@@ -32,46 +33,30 @@ $(function() {
         }
     }
 
+
     function startAction() {
-        $('#fruit1').show();
-        chooseFruit();
-        $('#fruit1').css({
-            'left': Math.round(550 * Math.random())
-        });
-        step = Math.round(Math.random() * 5) + 1;
+
+        generateNewFruit();
+
         action = setInterval(function() {
-
-            $('#fruit1').css('top', $('#fruit1').position().top + step);
-
-            if ($('#fruit1').position().top > $('#fruitsContainer').height()) {
+            $("#fruit1").css('top', $("#fruit1").position().top + step);
+            if ($("#fruit1").position().top > $("#fruitsContainer").height()) {
                 if (heartsLeft > 1) {
-
-                    //remove 1 heart
-                    //create again random fruit
-
-                    $('#fruit1').show();
-                    chooseFruit();
-                    $('#fruit1').css({
-                        'left': Math.round(550 * Math.random())
-                    });
-                    step = Math.round(Math.random() * 5) + 1;
+                    generateNewFruit();
                     heartsLeft--;
                     addHearts();
-
-
                 } else {
-                    //game over
                     playing = false;
-                    $('#startreset').html("Start game");
-                    $('#gameOver').show();
-                    $('#gameOver').html('<p>Game over!</p><p>Your score is ' + score + '</p>');
-                    $('#hearts').hide();
+                    $("#startreset").html("Start Game");
+                    $("#gameOver").show();
+                    $("#gameOver").html('<p>Game Over!</p><p>Your score is ' + score + '</p>');
+                    $("#hearts").hide();
                     stopAction();
-
                 }
             }
         }, 10);
     }
+
 
     function chooseFruit() {
         let randomNumber = Math.floor(Math.random() * 9);
@@ -84,13 +69,14 @@ $(function() {
         $("#fruit1").hide();
     }
 
-});
 
-/*function generateNewFruit() {
-    $('#fruit1').show();
-    chooseFruit();
-    $('#fruit1').css({
-        'left': Math.round(550 * Math.random())
-    });
-    step = Math.round(Math.random() * 5) + 1;
-*/
+    function generateNewFruit() {
+        $('#fruit1').show();
+        chooseFruit();
+        $('#fruit1').css({
+            'left': Math.round(550 * Math.random()),
+            'top': -50
+        });
+        step = Math.round(Math.random() * 5) + 1;
+    }
+});
