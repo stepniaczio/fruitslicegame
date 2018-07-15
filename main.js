@@ -59,7 +59,7 @@ $(function() {
 
 
     function chooseFruit() {
-        let randomNumber = Math.floor(Math.random() * 9);
+        let randomNumber = Math.floor(Math.random() * fruits.length);
         $('#fruit1').attr('src', 'images/' + fruits[randomNumber] + '.png');
     }
 
@@ -79,4 +79,17 @@ $(function() {
         });
         step = Math.round(Math.random() * 5) + 1;
     }
+
+    $("#fruit1").mouseover(function() {
+        score++;
+        $("#scorevalue").html(score);
+        $("#slice-sound")[0].play();
+        clearInterval(action);
+        //stopAction();
+        $("#fruit1").hide("explode", 200);
+        //startAction();
+        setTimeout(startAction, 300);
+    });
+
+
 });
